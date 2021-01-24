@@ -2,10 +2,9 @@
 
 Send your code snippet to friends via WhatsApp for quick help.
 
-
 > How to use WhatsApp Code
 
-![How to use WhatsApp Code](./images/How%20to%20Use%20WhatsApp%20Code.gif)
+![How to use WhatsApp Code](https://github.com/tejasmorkar/whatsapp-code/raw/main/images/How%20to%20Use%20WhatsApp%20Code.gif)
 
 ## Features
 
