@@ -25,8 +25,14 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.window.showInputBox({ placeHolder: 'Enter the WhatsApp Number with country code' })
 			.then((res) => {
 				let code = editor.document.getText(editor.selection)
-				const fileName = `*Code Snippet from `+editor.document.fileName+`*%0D%0A%0D%0A`;
-				vscode.env.openExternal(vscode.Uri.parse(`https://api.whatsapp.com/send?phone=${res}&text=${fileName.concat(code.replace('https://api.whatsapp.com/send?phone=', 'WhatsAppSendAPI%3D').replace('&text=', 'TEXT%3D').concat('%0D%0A%0D%0A_Sent via *WhatsApp Code* extension on VS Code_'))}`))
+				const fileName = `*Code Snippet from ` + editor.document.fileName + `*%0D%0A%0D%0A`;
+				let data = fileName.concat(code.replace('https://api.whatsapp.com/send?phone=', 'WhatsAppSendAPI%3D'));
+				data = data.replace('&text=', 'TEXT%3D');
+				data = data.concat('%0D%0A%0D%0A_Sent via *WhatsApp Code* extension on VS Code_');
+				let re = /\#/gi;
+				data = data.replace(re, '%23')
+				// vscode.window.showInformationMessage(data);
+				vscode.env.openExternal(vscode.Uri.parse(`https://api.whatsapp.com/send?phone=${res}&text=${data}`))
 			})
 			.then(() => {
 				vscode.window.showInformationMessage(`Click 'Open' to send Code via WhatsApp.`);
